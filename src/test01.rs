@@ -26,7 +26,7 @@
 // //    - Allows communication between tasks
 // //    - Sender (tx) and Receiver (rx)
 // //
-mod rs_async_basics;
+
 
 #[tokio::main]
 async fn main() {
