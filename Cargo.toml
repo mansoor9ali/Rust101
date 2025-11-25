@@ -55,3 +55,6 @@ path = "src/08_mini_redis_actor_pattern.rs"
 [[bin]]
 name = "server"
 path = "src/09_create_http_server.rs"
+
+[build-dependencies]
+dotenv = "0.15.0"
