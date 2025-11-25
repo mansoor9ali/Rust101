@@ -2,6 +2,7 @@
 name = "Rust101"
 version = "0.1.0"
 edition = "2024"
+default-run = "Rust101"
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }
@@ -10,5 +11,40 @@ bytes = "1.11.0"
 csv = "1.4.0"
 actix-web = "4.12.0"
 serde = { version = "1.0.228", features = ["derive"] }
+
 [dev-dependencies]
 reqwest = "0.12.24"
+
+# Binary targets - each example can be run separately
+[[bin]]
+name = "01_tokio_async_await_basics"
+path = "src/01_tokio_async_await_basics.rs"
+
+[[bin]]
+name = "02_tokio_spawn_concurrent_tasks"
+path = "src/02_tokio_spawn_concurrent_tasks.rs"
+
+[[bin]]
+name = "03_tokio_mpsc_channel_communication"
+path = "src/03_tokio_mpsc_channel_communication.rs"
+
+[[bin]]
+name = "04_tokio_file_read_async"
+path = "src/04_tokio_file_read_async.rs"
+
+[[bin]]
+name = "05_csv_reader_basic"
+path = "src/05_csv_reader_basic.rs"
+
+[[bin]]
+name = "06_csv_deserialize_with_serde"
+path = "src/06_csv_deserialize_with_serde.rs"
+
+[[bin]]
+name = "07_mini_redis_client_operations"
+path = "src/07_mini_redis_client_operations.rs"
+
+[[bin]]
+name = "08_mini_redis_actor_pattern"
+path = "src/08_mini_redis_actor_pattern.rs"
+
