@@ -2,7 +2,11 @@
 name = "Rust101"
 version = "0.1.0"
 edition = "2024"
-default-run = "Rust101"
+default-run = "server"
+
+[lib]
+name = "rust101"
+path = "src/lib.rs"
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }
@@ -48,3 +52,6 @@ path = "src/07_mini_redis_client_operations.rs"
 name = "08_mini_redis_actor_pattern"
 path = "src/08_mini_redis_actor_pattern.rs"
 
+[[bin]]
+name = "server"
+path = "src/09_create_http_server.rs"
