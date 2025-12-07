@@ -62,5 +62,10 @@ path = "src/09_create_http_server.rs"
 name = "10_env_var"
 path = "src/10_env_var.rs"
 
+[[bin]]
+name = "11_block101"
+path = "src/11_block101.rs"
+
+
 [build-dependencies]
 dotenv = "0.15.0"
