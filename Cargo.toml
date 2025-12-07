@@ -18,6 +18,8 @@ serde = { version = "1.0.228", features = ["derive"] }
 dotenv = "0.15.0"
 toon = "0.1.2"
 serde_json = "1.0"
+sha2 = "0.10"
+chrono = "0.4"
 [dev-dependencies]
 reqwest = "0.12.24"
 
@@ -65,6 +67,10 @@ path = "src/10_env_var.rs"
 [[bin]]
 name = "11_block101"
 path = "src/11_block101.rs"
+
+[[bin]]
+name = "12_block102"
+path = "src/12_block102.rs"
 
 
 [build-dependencies]
