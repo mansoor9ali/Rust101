@@ -83,6 +83,10 @@ name = "blockchain103"
 path = "src/blockchain/blockchain103.rs"
 
 [[bin]]
+name = "blockchain104"
+path = "src/blockchain/blockchain104.rs"
+
+[[bin]]
 name = "20_database101"
 path = "src/20_database101.rs"
 
