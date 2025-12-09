@@ -114,7 +114,7 @@ Sled stores everything as bytes, so you need to:
 
 ## File Location
 
-- Source: `src/blockchain/test.rs`
+- Source: `src/blockchain/sled_db_example.rs`
 - Binary name: `sled_db_example`
 - Database directory: `my_sled_db/` (created automatically)
 
