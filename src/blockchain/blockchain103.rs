@@ -166,19 +166,8 @@ impl Blockchain {
         self.blocks.last().unwrap()
     }
 
-    // Add a new block to the blockchain
-    pub fn add_block(&mut self, txn_data: String) {
-        let previous_hash = self.get_latest_block().hash.clone();
-        let id = self.blocks.len() as u64;
-
-        let mut new_block = Block::new(id, previous_hash, txn_data);
-        new_block.mine_block(self.difficulty);
-
-        self.blocks.push(new_block);
-    }
-
     // Add a new block with transactions to the blockchain
-    pub fn add_block_with_transactions(&mut self, transactions: Vec<Transaction>) {
+    pub fn add_block(&mut self, transactions: Vec<Transaction>) {
         let previous_hash = self.get_latest_block().hash.clone();
         let id = self.blocks.len() as u64;
 
@@ -248,8 +237,8 @@ impl Blockchain {
 }
 
 
-// Helper function to create a sample transaction
-fn create_sample_transaction(
+// Helper function to create a transaction
+fn create_transaction(
     sender: &str,
     receiver: &str,
     amount: f64,
@@ -290,28 +279,34 @@ fn main() {
     // Create a new blockchain with difficulty 3 (3 leading zeros for faster demo)
     let mut blockchain = Blockchain::new(3);
 
-    println!("\n--- Adding Simple Blocks to Blockchain ---\n");
+    println!("\n--- Adding Blocks with Transactions ---\n");
 
-    // Add simple transaction blocks (backward compatible)
-    blockchain.add_block(String::from("Alice pays Bob 10 BTC"));
-    blockchain.add_block(String::from("Bob pays Charlie 5 BTC"));
-
-    println!("\n--- Adding Blocks with Actual Transactions ---\n");
-
-    // Create and add a block with multiple transactions
-    let transactions1 = vec![
-        create_sample_transaction("wallet_alice", "wallet_bob", 15.5, "transfer"),
-        create_sample_transaction("wallet_bob", "wallet_charlie", 7.25, "transfer"),
-        create_sample_transaction("wallet_charlie", "wallet_david", 3.0, "transfer"),
+    // Block 1: Alice pays Bob
+    let block1_transactions = vec![
+        create_transaction("wallet_alice", "wallet_bob", 10.0, "transfer"),
     ];
-    blockchain.add_block_with_transactions(transactions1);
+    blockchain.add_block(block1_transactions);
 
-    // Create and add another block with transactions
-    let transactions2 = vec![
-        create_sample_transaction("wallet_david", "wallet_eve", 12.0, "transfer"),
-        create_sample_transaction("wallet_eve", "wallet_frank", 8.5, "transfer"),
+    // Block 2: Bob pays Charlie
+    let block2_transactions = vec![
+        create_transaction("wallet_bob", "wallet_charlie", 5.0, "transfer"),
     ];
-    blockchain.add_block_with_transactions(transactions2);
+    blockchain.add_block(block2_transactions);
+
+    // Block 3: Multiple transactions
+    let block3_transactions = vec![
+        create_transaction("wallet_alice", "wallet_bob", 15.5, "transfer"),
+        create_transaction("wallet_bob", "wallet_charlie", 7.25, "transfer"),
+        create_transaction("wallet_charlie", "wallet_david", 3.0, "transfer"),
+    ];
+    blockchain.add_block(block3_transactions);
+
+    // Block 4: More transactions
+    let block4_transactions = vec![
+        create_transaction("wallet_david", "wallet_eve", 12.0, "transfer"),
+        create_transaction("wallet_eve", "wallet_frank", 8.5, "transfer"),
+    ];
+    blockchain.add_block(block4_transactions);
 
     // Display the blockchain
     blockchain.display();
@@ -323,14 +318,16 @@ fn main() {
     // Demonstrate merkle root integrity
     println!("\n--- Demonstrating Merkle Root Integrity ---\n");
     let block_3 = &blockchain.blocks[3];
-    println!("Block 3 has {} transactions", block_3.transactions.len());
+    println!("Block {} has {} transactions", block_3.id, block_3.transactions.len());
     println!("Merkle Root: {}", block_3.merkle_root.as_ref().unwrap());
     println!("This merkle root represents all transactions in the block cryptographically.");
 
     // Demonstrate tampering detection
     println!("\n--- Testing Tampering Detection ---\n");
-    println!("Attempting to tamper with block 2...");
-    blockchain.blocks[2].txn_data = String::from("Bob pays Charlie 100 BTC (TAMPERED)");
+    println!("Attempting to tamper with block 1's transaction amount...");
+    if let Some(tx) = blockchain.blocks[1].transactions.first_mut() {
+        tx.amount = 100.0; // Tamper with the amount (from 10.0 to 100.0)
+    }
 
     println!("Validating blockchain after tampering...\n");
     if !blockchain.is_chain_valid() {

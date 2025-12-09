@@ -116,7 +116,7 @@ pub struct Blockchain {
 Transactions are created with proper hashing:
 
 ```rust
-fn create_sample_transaction(
+fn create_transaction(
     sender: &str,
     receiver: &str,
     amount: f64,
@@ -722,21 +722,25 @@ For production use, add:
 ## Summary
 
 This implementation demonstrates:
-- ✅ Complete blockchain with transactions
+- ✅ Complete blockchain with proper transaction objects
 - ✅ Merkle tree for efficient verification
-- ✅ Proof-of-work mining
-- ✅ Comprehensive validation
-- ✅ Tamper detection
-- ✅ Production-ready structure (needs networking)
+- ✅ Proof-of-work mining with adjustable difficulty
+- ✅ Comprehensive validation and tamper detection
+- ✅ Authentic blockchain design (merkle root in hash, not raw data)
+- ✅ Production-quality structure (needs networking + digital signatures)
 
-**Key Takeaway**: Merkle trees enable blockchains to scale by allowing light clients to verify transactions without downloading the entire blockchain, while maintaining cryptographic security.
+**Key Takeaways**: 
+1. **Merkle trees** enable blockchains to scale by allowing light clients to verify transactions without downloading the entire blockchain
+2. **Clean hash design** includes only cryptographically essential fields (id, previous_hash, timestamp, nonce, merkle_root)
+3. **Transaction integrity** is maintained through merkle roots, not by including raw transaction data in block hashes
 
 ---
 
-**File**: `13_block103.rs`  
-**Author**: Rust Blockchain Learning Series  
+**File**: `blockchain103.rs`
+**Title**: Rust Blockchain Learning Series  
+**Author**: Mansoor Ali Syed
 **Date**: December 2025  
-**Version**: 1.0.0
+**Version**: 2.0.0 - Refactored (Transaction-first design)
 
 🎉 **Happy Blockchain Building!** 🔗
 
