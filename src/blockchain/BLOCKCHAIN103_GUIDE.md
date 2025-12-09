@@ -32,15 +32,9 @@ A **Merkle Tree** (or hash tree) is a binary tree where:
 - **Parent nodes** contain hashes of their children's combined hashes
 - **Root node** (merkle root) represents all transactions cryptographically
 
-```
-         Merkle Root (ABCD)
-            /         \
-       Hash(AB)      Hash(CD)
-        /    \        /    \
-    Hash(A) Hash(B) Hash(C) Hash(D)
-      |       |       |       |
-    Tx A    Tx B    Tx C    Tx D
-```
+- **Visual Representation:**
+![Merkle Tree Structure](Merkle%20Root.png)
+
 
 ### Why Merkle Trees?
 
