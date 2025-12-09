@@ -1,4 +1,4 @@
-# Custom Blockchain Implementation Guide
+# 🔗 Blockchain 102 Guide: Custom Blockchain Implementation Guide
 
 ## Overview
 

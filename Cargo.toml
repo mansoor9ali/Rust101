@@ -71,12 +71,16 @@ name = "10_env_var"
 path = "src/10_env_var.rs"
 
 [[bin]]
-name = "11_block101"
-path = "src/11_block101.rs"
+name = "blockchain101"
+path = "src/blockchain/blockchain101.rs"
 
 [[bin]]
-name = "12_block102"
-path = "src/12_block102.rs"
+name = "blockchain102"
+path = "src/blockchain/blockchain102.rs"
+
+[[bin]]
+name = "blockchain103"
+path = "src/blockchain/blockchain103.rs"
 
 [[bin]]
 name = "20_database101"
